@@ -1,0 +1,32 @@
+body{
+    display:flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+form{
+      border:2px solid black;
+    padding:40px;
+    background-color: deepskyblue;
+    box-shadow:0 0 10px grey;
+}
+
+input[type='submit']{
+    border-radius: 10px;
+    padding:8px 15px;
+    outline:none;
+    border:none;
+    display:block;
+    margin: 0 auto;
+    cursor:pointer;
+}
+
+input{
+    outline: none;
+}
+
+input[type='submit']:hover{
+    background-color: rgb(128, 128, 241);
+    color:#fff;
+}
