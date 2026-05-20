@@ -3,16 +3,8 @@ const Ticket = require('../models/Ticket');
 const router = express.Router();
 
 // Get all tickets
-router.get('/', async (req, res) => {
-    try {
-        const tickets = await Ticket.find().sort({ createdAt: -1 });
-        res.json(tickets);
-    } catch (err) {
-        res.status(500).json({ err: err.message });
-    }
-});
 
-//Create ticket
+
 router.post('/', async (req, res) => {
     try {
         const ticket = new Ticket(req.body);
@@ -23,7 +15,17 @@ router.post('/', async (req, res) => {
     }
 });
 
-// Update ticket status
+router.get('/', async (req, res) => {
+    try {
+        const tickets = await Ticket.find();
+        res.json(tickets);
+    } catch (err) {
+        res.status(500).json({ err: err.message });
+    }
+});
+
+
+
 router.put('/:id', async (req, res) => {
     try {
         const updatedTicket = await Ticket.findByIdAndUpdate(
@@ -42,7 +44,7 @@ router.put('/:id', async (req, res) => {
     }
 });
 
-// Delete ticket
+
 router.delete('/:id', async (req, res) => {
     try {
         const deletedTicket = await Ticket.findByIdAndDelete(req.params.id);

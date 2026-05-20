@@ -6,7 +6,7 @@ function CreateForm() {
  const [form,setForm] = useState({
 title:'',
 description:'',
-priority:'Low',
+priority:'',
 createdBy:''
  })
 
@@ -18,21 +18,21 @@ const handleChange=(e)=>{
 const handleSubmit = async(e)=>{
     e.preventDefault();
     try{
-        await axios.post('/api/tickets', form);
+        await axios.post('http://localhost:5000/api/tickets', form);
         alert('Ticket created');
         setForm ({title:'',
         description:'',
-        priority:'Low',
+        priority:'',
         createdBy:''
         });
     } catch(error){
         alert("Error Creating ticket ");
-        console.log(error);
-    }
+        console.log(console.error());
+    };
 }
 
   return (
-    <>
+    <div>
       <form onSubmit={handleSubmit}>
         <label htmlFor="title">Title: </label>
         <input type="text" id="title" name="title" value={form.title} onChange={handleChange}/> <br/><br/>
@@ -54,7 +54,7 @@ const handleSubmit = async(e)=>{
 
         <input type="submit" value="Submit" />
       </form>
-    </>
+    </div>
   );
 }
 

@@ -8,7 +8,7 @@ function TicketList(){
 
     const fetchTickets = async() =>{
         try{
-            const res = await axios.get('/api/tickets');
+            const res = await axios.get('http://localhost:5000/api/tickets');
             setTickets(res.data);
 
         }catch(error){
@@ -19,7 +19,7 @@ function TicketList(){
 
     const deleteTicket = async(id)=>{
         try{
-            await axios.delete(`/api/tickets/${id}`);
+            await axios.delete(`http://localhost:5000/api/tickets/${id}`);
             setTickets(prevTickets => prevTickets.filter(ticket => ticket._id !== id));
         }catch(error){
             alert("Error in deleting Ticket");
@@ -30,7 +30,7 @@ function TicketList(){
 
     const updateTicket = async(id, newStatus)=>{
         try{
-            await axios.put(`/api/tickets/${id}`, { status: newStatus });
+            await axios.put(`http://localhost:5000/api/tickets/${id}`, { status: newStatus });
             setTickets(prevTickets =>
                 prevTickets.map(ticket =>
                     ticket._id === id ? {...ticket, status: newStatus} : ticket
@@ -44,7 +44,8 @@ function TicketList(){
 
     useEffect(()=>{
         fetchTickets();
-    },[])
+        // window.dispatchEvent(new Event("ticketCreated"))
+    },[]);
 
     return(
         <div className= "ticket-list">
