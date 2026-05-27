@@ -10,6 +10,7 @@ app.use(cors());
 app.use(express.json());
 
 mongoose.connect('mongodb://localhost:27017/ticketDB')
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/ticketDB')
     .then(()=>console.log("MongoDB Connected"))
     .catch(err=>console.log(err));
 
